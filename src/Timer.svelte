@@ -23,7 +23,6 @@
   ];
   const randomIndex = Math.floor(Math.random() * 10) % victoryFiles.length;
   const victorySound = new Audio(victoryFiles[randomIndex]);
-  console.log(randomIndex, victoryFiles[randomIndex]);
 
   function tickDown() {
     secondsLeft -= 1;
