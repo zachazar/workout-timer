@@ -14,3 +14,4 @@ It was also used to practice:
 Todo:
 
 - [x] Allow user to set initial time and number of rounds
+- [ ] Figure out how to invalidate Cloudfront on changes since the filenames stay the same.
