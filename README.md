@@ -13,4 +13,4 @@ It was also used to practice:
 
 Todo:
 
-- Allow user to set initial time and number of rounds
+- [x] Allow user to set initial time and number of rounds

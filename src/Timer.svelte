@@ -1,10 +1,18 @@
 <script>
-  const MAX_SECONDS = 60 * 7;
-  const MAX_ROUNDS = 4;
-  let secondsLeft = MAX_SECONDS;
-  let roundsLeft = MAX_ROUNDS;
+  let selectedMinutes = 7;
+  let selectedSeconds = 0;
+  let selectedRounds = 4;
+  let roundsLeft = selectedRounds;
+  let hasFinalizedTimings = false;
+
   let interval;
   let videoRef;
+
+  function calculateTotalSeconds() {
+    return selectedMinutes * 60 + selectedSeconds;
+  }
+
+  let secondsLeft = calculateTotalSeconds();
 
   const cheerSound = new Audio("./sounds/cheer2.mp3");
   const victoryFiles = [
@@ -26,12 +34,17 @@
         victorySound.play();
       } else {
         cheerSound.play();
-        secondsLeft = MAX_SECONDS;
+        secondsLeft = calculateTotalSeconds();
       }
     }
   }
 
   function start() {
+    if (!hasFinalizedTimings) {
+      hasFinalizedTimings = true;
+      secondsLeft = calculateTotalSeconds();
+      roundsLeft = selectedRounds;
+    }
     interval = setInterval(tickDown, 1000);
   }
 
@@ -61,9 +74,23 @@
     font-size: 4em;
     font-weight: 100;
   }
+  h1 input {
+    font-weight: 100;
+    width: 100px;
+  }
   h2 {
     font-size: 2em;
     font-weight: 100;
+  }
+  h2 input {
+    font-weight: 100;
+    width: 70px;
+  }
+
+  input {
+    padding: 0;
+    border: none;
+    text-align: center;
   }
 
   button {
@@ -89,17 +116,31 @@
 </style>
 
 <main>
-  <!-- <audio preload="auto" controls="none" bind:this={audioRef}>Your browser does
-    not support audio</audio> -->
-
-  <h1>
-    {toStringTwoChars(Math.floor(secondsLeft / 60))} : {toStringTwoChars(secondsLeft % 60)}
-  </h1>
+  {#if hasFinalizedTimings}
+    <h1>
+      {toStringTwoChars(Math.floor(secondsLeft / 60))} : {toStringTwoChars(secondsLeft % 60)}
+    </h1>
+  {:else}
+    <h1>
+      <input type="number" size="2" min="0" bind:value={selectedMinutes} />:<input
+        type="number"
+        size="2"
+        max="59"
+        min="0"
+        bind:value={selectedSeconds} />
+    </h1>
+  {/if}
   {#if interval}
     <!-- svelte-ignore a11y-media-has-caption -->
     <video src="./videos/workout.mp4" width="300" autoplay="true" loop="true" />
   {/if}
-  <h2>Rounds left: {roundsLeft}/{MAX_ROUNDS}</h2>
+  {#if hasFinalizedTimings}
+    <h2>Rounds left: {roundsLeft}/{selectedRounds}</h2>
+  {:else}
+    <h2>
+      Rounds: <input type="number" size="2" min="1" bind:value={selectedRounds} />
+    </h2>
+  {/if}
   {#if roundsLeft === 1}
     <h2 class="lastRound">Last round!!</h2>
   {:else if roundsLeft === 0}
