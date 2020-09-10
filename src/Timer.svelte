@@ -1,6 +1,6 @@
 <script>
-  const MAX_SECONDS = 3; //60 * 7;
-  const MAX_ROUNDS = 2; //4
+  const MAX_SECONDS = 60 * 7;
+  const MAX_ROUNDS = 4;
   let secondsLeft = MAX_SECONDS;
   let roundsLeft = MAX_ROUNDS;
   let interval;
