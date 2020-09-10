@@ -5,12 +5,12 @@
   let roundsLeft = MAX_ROUNDS;
   let interval;
 
-  const cheerSound = new Audio("../sounds/cheer2.mp3");
+  const cheerSound = new Audio("./sounds/cheer2.mp3");
   const victoryFiles = [
-    "../sounds/footballcrowd.mp3",
-    "../sounds/footballcrowd2.mp3",
-    "../sounds/tottnu8.mp3",
-    "../sounds/yeehaw.mp3",
+    "./sounds/footballcrowd.mp3",
+    "./sounds/footballcrowd2.mp3",
+    "./sounds/tottnu8.mp3",
+    "./sounds/yeehaw.mp3",
   ];
   const randomIndex = Math.floor(Math.random() * 10) % victoryFiles.length;
   const victorySound = new Audio(victoryFiles[randomIndex]);
