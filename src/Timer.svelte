@@ -4,6 +4,7 @@
   let secondsLeft = MAX_SECONDS;
   let roundsLeft = MAX_ROUNDS;
   let interval;
+  let videoRef;
 
   const cheerSound = new Audio("./sounds/cheer2.mp3");
   const victoryFiles = [
@@ -94,6 +95,10 @@
   <h1>
     {toStringTwoChars(Math.floor(secondsLeft / 60))} : {toStringTwoChars(secondsLeft % 60)}
   </h1>
+  {#if interval}
+    <!-- svelte-ignore a11y-media-has-caption -->
+    <video src="./videos/workout.mp4" width="300" autoplay="true" loop="true" />
+  {/if}
   <h2>Rounds left: {roundsLeft}/{MAX_ROUNDS}</h2>
   {#if roundsLeft === 1}
     <h2 class="lastRound">Last round!!</h2>
