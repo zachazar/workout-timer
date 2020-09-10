@@ -5,7 +5,8 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public",
-    "deploy": "npm run build && aws s3 sync public s3://workout-timer.zachazar.com"
+    "deploy": "npm run build && aws s3 sync public s3://workout-timer.zachazar.com && echo 'Remember to invalidate the cache once ready'",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id ${KEY} --paths '/index.html' '/build/*'"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
