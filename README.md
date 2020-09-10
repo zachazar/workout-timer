@@ -1,6 +1,6 @@
 # Workout-timer 💪
 
-View at: [https://workout-timerzachazar.com/](https://workout-timerzachazar.com/)
+View at: [https://workout-timer.zachazar.com/](https://workout-timer.zachazar.com/)
 
 We've been doing home workouts and keeping time on our phone (which is annoying). This app makes it easier (and funny).
 
